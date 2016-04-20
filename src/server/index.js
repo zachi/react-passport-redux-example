@@ -84,10 +84,6 @@ app.get("*", (req, res, next) => {
 	</body>
 	</html>`
 
-	/*fs.readFile("./public/index.html", {encoding: 'utf-8'}, (err, data) => {
-		res.status(200).end(data)
-	})*/
-
 	res.status(200).end(appHTML)
 
 })
