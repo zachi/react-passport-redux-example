@@ -3,6 +3,7 @@ import { Router, Route, IndexRoute } from "react-router"
 import App from "./components/container/App"
 import LoginContainer from "./components/container/LoginContainer"
 import RegisterContainer from "./components/container/RegisterContainer"
+import IntakeContainer from "./components/container/IntakeContainer"
 import MyProfileContainer from "./components/container/MyProfileContainer"
 import Default from "./components/pure/Default"
 
@@ -27,7 +28,8 @@ export default (store, history) => {
 			<Route path="/" component={App}>
 				<IndexRoute component={Default} />
 				<Route path="login" component={LoginContainer} />
-				<Route path="register" component={RegisterContainer} />
+				<Route path="intake" component={IntakeContainer} />
+
 				<Route path="myprofile" component={MyProfileContainer} onEnter={requireAuth} />
 			</Route>	
 		</Router>	

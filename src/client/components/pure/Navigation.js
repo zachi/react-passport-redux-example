@@ -17,6 +17,11 @@ const Navigation = React.createClass({
 		this.props.manualLogout()
 	},
 
+	_intakeScore: function(event) {
+		event.preventDefault()
+		alert('');
+	},
+
 	render: function() {
 		return(
 			<div style={navStyle}>				
@@ -34,6 +39,13 @@ const Navigation = React.createClass({
 				<Link to="/myprofile">MyProfile</Link>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<Link to="/">About This Repo</Link>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<Link to="/intake">intake</Link>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button onClick={this._intakeScore} style={buttonStyle}>intakeScoreeee</button>
+
+				
+				
 			</div>
 		)	
 	}

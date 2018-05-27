@@ -8,6 +8,8 @@ import secrets from "./config/secrets"
 import configurePassport from "./config/passport"
 import configureExpress from "./config/express"
 import users from "./controllers/users"
+import intakes from "./controllers/intakes"
+
 import "./models/user"
 
 // -------------------------------------------
@@ -58,6 +60,8 @@ configureExpress(app, passport)
 app.post("/login", users.login)
 app.get("/logout", users.logout)
 app.post("/register", users.register)
+app.post("/intake", intakes.save)
+app.get("/intakeScore", intakes.getScore)
 
 app.get("*", (req, res, next) => {	
 
