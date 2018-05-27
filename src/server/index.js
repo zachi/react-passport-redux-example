@@ -80,6 +80,20 @@ app.get("*", (req, res, next) => {
 			body {
 				font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;			
 			}
+			
+			.intake-cpl label {
+				width: 500px;
+				display: inline-block;
+				margin: 0 20px 10px 0;
+				height: 50px;
+			}
+
+			.intake-cpl input {
+				display: inline-block;
+				vertical-align: top;
+				margin-right: 50px;
+			}
+			
 		</style>
 	</head>
 	<body>

@@ -28,7 +28,8 @@ export default (store, history) => {
 			<Route path="/" component={App}>
 				<IndexRoute component={Default} />
 				<Route path="login" component={LoginContainer} />
-				<Route path="intake" component={IntakeContainer} />
+				<Route path="intake" component={IntakeContainer} onEnter={requireAuth} />
+				<Route path="register" component={RegisterContainer} />
 
 				<Route path="myprofile" component={MyProfileContainer} onEnter={requireAuth} />
 			</Route>	
