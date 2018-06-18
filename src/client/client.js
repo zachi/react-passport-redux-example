@@ -11,6 +11,7 @@ import isNode from "detect-node"
 import createRoutes from "./routes"
 import rootReducer from "./reducers"
 
+
 let middleware = [		
 	thunkMiddleware
 ]	

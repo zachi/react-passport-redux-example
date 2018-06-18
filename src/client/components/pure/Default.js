@@ -1,27 +1,39 @@
 import React from "react"
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
-const Default = React.createClass({
-	render: function() {
-		return(
-			<div>
-				<h2>React-Passport-Redux-Example</h2>				
-				<p>Demonstration of PassportJS authentication in React w/ Redux. Use the links above to register a new user and login/logout. You will only be able to view the MyProfile page when you are logged in. Logging in will redirect you to MyProfile if you had clicked that link beforehand.</p>
-				<p>I'll be doing my best to document code with useful comments so look for more detail there. Note: you should be able to implement the authentication functionality using less packages. I was working on another project before deciding to make this example repo so some bloat may have travelled over from that.</p>
-				<p>In full, this repo demonstrates:</p>
-				<ul>
-					<li><strong>React</strong> for the view layer </li>
-					<li><strong>PassportJS</strong> for authentication (using a Local Strategy)</li>					
-					<li><strong>Redux</strong> to handle our state</li>
-					<li><strong>React Router</strong> for routing client-side</li>
-					<li><strong>Express</strong> for handling server requests (REST and page requests)</li>
-					<li><strong>MongoDB</strong> for our database, with <strong>Mongoose</strong> handling our schema</li>
-					<li><strong>Webpack</strong> to bundle our client-side code</li>
-					<li>Hot reloading using <strong>webpack-dev-middleware</strong> and <strong>webpack-hot-middleware</strong></li>
-				</ul>
-				<p>Shoutout to GitHub member <b>choonkending</b> whose <a href="https://github.com/choonkending/react-webpack-node" target="_blank">repo</a> was a big help. Pull requests and comments / issue reports are most welcome!</p>						
-			</div>
-		)	
+
+const styles = theme =>({
+
+	main:{
+		margin:theme.spacing.unit*2,
+
 	}
 })
 
-export default Default
+class Default extends React.Component{
+	render() {
+		const { classes } = this.props;
+				return(
+			<div className={classes.main}>
+				<Typography variant="headline" >Lorem Ipsum</Typography>
+
+				<Typography variant="subheading" >
+				<p>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit bibendum orci ut sodales. Aliquam feugiat varius facilisis. Donec sed ipsum scelerisque, lobortis turpis at, tincidunt lacus. Integer est dolor, viverra et pellentesque sed, dignissim nec purus. Donec id egestas nulla, at porttitor tortor. Etiam sed dui vehicula, congue sem nec, fringilla eros. Suspendisse rhoncus risus ut cursus sodales. Sed sit amet elementum eros. Nulla facilisi. Curabitur ligula tortor, ultricies non sem et, sagittis facilisis nulla. Morbi dui dui, efficitur at augue nec, rutrum pretium enim.</p>
+				<p>In full, this repo demonstrates:</p>
+				<ul>
+					<li><strong>Sed</strong> ut perspiciatis unde omnis  </li>
+					<li><strong>voluptatem</strong> iste natus error sit </li>					
+					<li><strong>accusantium</strong>  doloremque laudantium, totam rem aperiam</li>
+					<li><strong>inventore</strong> eaque ipsa quae ab illo  </li>
+					<li><strong>veritatis</strong>  et quasi architecto beatae vitae</li>
+				</ul>
+				<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores </p>						
+				</Typography>
+			</div>
+		)	
+	}
+}
+
+export default withStyles(styles)(Default);

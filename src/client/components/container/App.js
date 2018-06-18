@@ -1,21 +1,18 @@
 import React from "react"
 import NavigationContainer from "./NavigationContainer"
+import withRoot from "../withRoot"
+import CssBaseline from '@material-ui/core/CssBaseline';
 
-const App = React.createClass({
-	render: function() {
+class App extends React.Component{
+	  render() {
 		return(
 			<div>
+				<CssBaseline />
 				<NavigationContainer />				
 				{this.props.children}
-				<hr/>
-				<h5>					
-					<iframe src="https://ghbtns.com/github-btn.html?user=kilkelly&repo=react-passport-redux-example&type=star&count=true" frameBorder="0" scrolling="0" width="170px" height="20px"></iframe><br/>
-					<a href="https://github.com/kilkelly/react-passport-redux-example">View on GitHub</a>
-				</h5>
-
 			</div>	
 		)	
 	}
-})
+}
 
-export default App
+export default withRoot(App);

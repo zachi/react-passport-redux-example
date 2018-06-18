@@ -76,26 +76,11 @@ app.get("*", (req, res, next) => {
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<title>React-Passport-Redux-Example</title>
-		<style>
-			body {
-				font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;			
-			}
-			
-			.intake-cpl label {
-				width: 500px;
-				display: inline-block;
-				margin: 0 20px 10px 0;
-				height: 50px;
-			}
-
-			.intake-cpl input {
-				display: inline-block;
-				vertical-align: top;
-				margin-right: 50px;
-			}
-			
-		</style>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+		<link href="/assets/scss/common.css" rel="stylesheet">
 	</head>
+	
+
 	<body>
 		<div id="app"></div>
 		<script src="/assets/app${minified}.js"></script>

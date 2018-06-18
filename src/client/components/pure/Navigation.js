@@ -1,54 +1,87 @@
 import React from "react"
 import { Link } from "react-router"
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Icon from '@material-ui/core/Icon';
+import Home from '@material-ui/icons/Home';
 
-var navStyle = {
-	backgroundColor: "#EEE",
-	padding: "10px"
-}
 
-var buttonStyle = {
-	backgroundColor: "yellow"
-}
 
-const Navigation = React.createClass({
+const styles = theme =>({
+	
+	root: {
+		flexGrow: 1,
+	},
+	flex: {
+		flex: 1,
+	},
+	leftIcon: {
+		marginRight: theme.spacing.unit,
+	  },
+});
 
-	_logout: function(event) {
+class Navigation extends React.Component{
+	constructor(props) {
+		super(props);
+		this._logout = this._logout.bind(this)
+		this._intakeScore = this._intakeScore.bind(this)
+	}
+
+
+	_logout(event) {
 		event.preventDefault()
 		this.props.manualLogout()
-	},
+	}
 
-	_intakeScore: function(event) {
+	_intakeScore(event) {
 		event.preventDefault()
 		alert('');
-	},
+	}
 
-	render: function() {
+	render() {
+		const { classes } = this.props;
+
 		return(
-			<div style={navStyle}>				
-				{
-					this.props.user.authenticated 
-					? <button onClick={this._logout} style={buttonStyle}>Logout [{this.props.user.email}]</button>
-					: <Link to="/login">Log In</Link>
-				}				
-				{
-					!this.props.user.authenticated 
-					? <span>&nbsp;|&nbsp;<Link to="/register">Register</Link></span>
-					: ""
-				}				
-				&nbsp;|&nbsp;
-				<Link to="/myprofile">MyProfile</Link>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<Link to="/">About This Repo</Link>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<Link to="/intake">intake</Link>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<button onClick={this._intakeScore} style={buttonStyle}>intakeScoreeee</button>
+			<div className={classes.root}>
 
-				
-				
+			<AppBar position="static" >
+				<Toolbar>
+				<IconButton component={Link} to="/" color="inherit"  className={classes.button} >
+					<Home className={classes.leftIcon} color="inherit" ></Home>
+				</IconButton>
+				<div className={classes.flex}></div>
+					
+					{ this.props.user.authenticated ? (
+						<div>
+							<Button  component={Link} to="/intake" color="inherit">Intake</Button>
+							<Button onClick={this._logout} color="inherit" >Logout [{this.props.user.email}]</Button>
+						</div>
+					) : (
+						<div>
+							<Button  component={Link} to="/login" color="inherit">Log In</Button>
+							<Button  component={Link} to="/register" color="inherit">Register</Button>
+						</div>
+					)
+					}
+									
+					
+						
+					
+						
+					
+					
+				</Toolbar>
+			</AppBar>
 			</div>
 		)	
 	}
-})
+}
 
-export default Navigation
+
+export default withStyles(styles)(Navigation);
