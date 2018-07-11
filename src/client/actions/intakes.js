@@ -51,3 +51,27 @@ export function manualIntake(data) {
 	}
 
 }
+
+export function getIntake() {	
+	return dispatch => {
+		axios({
+			method: "get",
+			url: "intakeScore",
+			data: {}
+		})
+		.then(response => {
+			if (response.data.user) {					
+				dispatch( {
+					type: "SET_INTAKE_DATA",
+					data : response.data
+				})
+			}
+		})
+		.catch(response => {
+			if (response instanceof Error) {
+				
+			}
+		})
+	}
+
+}

@@ -1,5 +1,7 @@
+cosmetics for registration screen
 save session after reload
-fix broken pages
 add missing fields to intake form
-forms cosmetics
-app bar cosmetics
+implement material ui grid layout and check mobile layout
+
+implement dot probe
+implement eye tracker 

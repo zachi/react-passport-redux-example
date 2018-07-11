@@ -43,6 +43,9 @@ const user = (state = {
 			return Object.assign({}, state, { isWaiting: false })
 		case REGISTER_ERROR_USER:
 			return Object.assign({}, state, { isWaiting: false })
+		case 'SET_INTAKE_DATA':
+			return Object.assign({}, state, {intakeData: action.data})
+
 		default:
 			return state
 	}

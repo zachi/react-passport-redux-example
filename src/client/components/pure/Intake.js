@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import axios from "axios"
 import CustomizedSnackbars from './CustomizedSnackbars'
+//import { connect } from 'react-redux'
 
 
 
@@ -83,36 +84,40 @@ class Intake extends React.Component{
 			intakeSaved: false
 			
 		}
-		this._onIntakeSubmit = this._onIntakeSubmit.bind(this)
+		this.onIntakeSubmit = this.onIntakeSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
+
+		
+		this.handleExistingIntake();
+
+	};
+
+	handleExistingIntake() {
 		axios({
 			method: "get",
 			url: "intakeScore",
 			data: {}
 		})
-		.then(response => {
-			if (response.data.user) {					
-				this.setState({
-					intakeSaved: true, 
-					showSnackbar: true,
-					formValues : response.data,
-					snackbarType: 'info'
-
-				})				
-				this.setState({
-					snackbarMessage: 'intake exists, score: ' + this.getIntakeScore(),
-				})				
-			} else {					
-		
-			}
-		})
-		.catch(response => {
-			if (response instanceof Error) {
-				
-			}
-		})
-
-	};
+			.then(response => {
+				if (response.data.user) {
+					this.setState({
+						intakeSaved: true,
+						showSnackbar: true,
+						formValues: response.data,
+						snackbarType: 'info'
+					});
+					this.setState({
+						snackbarMessage: 'intake exists, score: ' + this.getIntakeScore(),
+					});
+				}
+				else {
+				}
+			})
+			.catch(response => {
+				if (response instanceof Error) {
+				}
+			});
+	}
 
 	getIntakeScore(){
 		var sum = 0;
@@ -133,7 +138,7 @@ class Intake extends React.Component{
 		});
 	};
 
-	_onIntakeSubmit(event) {
+	onIntakeSubmit(event) {
 		event.preventDefault()
 		
 		// Passed in via react-redux. Returns a promise.
@@ -204,11 +209,11 @@ class Intake extends React.Component{
 									<TableCell component="th" scope="row">
 										<Typography variant="body2" >{n.text}</Typography>
 									</TableCell>
-									<TableCell className={classes.tableCell} ><Radio disabled={ this.state.intakeSaved} value={0} color="default" checked={this.state.formValues[n.name] === 0 } onChange={this.handleChange} name={n.name} aria-label="D" /></TableCell>
-									<TableCell className={classes.tableCell} ><Radio disabled={ this.state.intakeSaved} value={1} color="default" checked={this.state.formValues[n.name] === 1 } onChange={this.handleChange} name={n.name} aria-label="D" /></TableCell>
-									<TableCell className={classes.tableCell} ><Radio disabled={ this.state.intakeSaved} value={2} color="default" checked={this.state.formValues[n.name] === 2 } onChange={this.handleChange} name={n.name} aria-label="D" /></TableCell>
-									<TableCell className={classes.tableCell} ><Radio disabled={ this.state.intakeSaved} value={3} color="default" checked={this.state.formValues[n.name] === 3 } onChange={this.handleChange} name={n.name} aria-label="D" /></TableCell>
-									<TableCell className={classes.tableCell} ><Radio disabled={ this.state.intakeSaved} value={4} color="default" checked={this.state.formValues[n.name] === 4 } onChange={this.handleChange} name={n.name} aria-label="D" /></TableCell>
+									<TableCell className={classes.tableCell} ><Radio disabled={ this.state.intakeSaved} value={'0'} color="default" checked={this.state.formValues[n.name] === 0 } onChange={this.handleChange} name={n.name} aria-label="D" /></TableCell>
+									<TableCell className={classes.tableCell} ><Radio disabled={ this.state.intakeSaved} value={'1'} color="default" checked={this.state.formValues[n.name] === 1 } onChange={this.handleChange} name={n.name} aria-label="D" /></TableCell>
+									<TableCell className={classes.tableCell} ><Radio disabled={ this.state.intakeSaved} value={'2'} color="default" checked={this.state.formValues[n.name] === 2 } onChange={this.handleChange} name={n.name} aria-label="D" /></TableCell>
+									<TableCell className={classes.tableCell} ><Radio disabled={ this.state.intakeSaved} value={'3'} color="default" checked={this.state.formValues[n.name] === 3 } onChange={this.handleChange} name={n.name} aria-label="D" /></TableCell>
+									<TableCell className={classes.tableCell} ><Radio disabled={ this.state.intakeSaved} value={'4'} color="default" checked={this.state.formValues[n.name] === 4 } onChange={this.handleChange} name={n.name} aria-label="D" /></TableCell>
 								</TableRow>
 								);
 							})}
@@ -216,7 +221,7 @@ class Intake extends React.Component{
 						</Table>
 						
 					</Paper>
-					<Button variant="outlined" disabled={ this.state.intakeSaved} color="primary" className={classes.button} onClick={this._onIntakeSubmit} >submit</Button><br />
+					<Button variant="outlined" disabled={ this.state.intakeSaved} color="primary" className={classes.button} onClick={this.onIntakeSubmit} >submit</Button><br />
 				</form>	
 			</div>
 		)	

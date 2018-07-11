@@ -10,7 +10,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Icon from '@material-ui/core/Icon';
 import Home from '@material-ui/icons/Home';
-
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 
 const styles = theme =>({
@@ -28,9 +29,14 @@ const styles = theme =>({
 
 class Navigation extends React.Component{
 	constructor(props) {
+
 		super(props);
+		this.state = { anchorEl: null}
 		this._logout = this._logout.bind(this)
 		this._intakeScore = this._intakeScore.bind(this)
+		this.handleTasksClick = this.handleTasksClick.bind(this)
+		this.handleTasksClose = this.handleTasksClose.bind(this)
+
 	}
 
 
@@ -43,6 +49,14 @@ class Navigation extends React.Component{
 		event.preventDefault()
 		alert('');
 	}
+
+	handleTasksClick(event) {
+		this.setState({ anchorEl: event.currentTarget });
+	  };
+	
+	  handleTasksClose(){
+		this.setState({ anchorEl: null });
+	  };
 
 	render() {
 		const { classes } = this.props;
@@ -59,6 +73,17 @@ class Navigation extends React.Component{
 					
 					{ this.props.user.authenticated ? (
 						<div>
+							 <Menu
+								id="simple-menu"
+								anchorEl={ this.state.anchorEl}
+								open={Boolean(this.state.anchorEl)}
+								onClose={this.handleTasksClose}
+								>
+								<MenuItem onClick={this.handleTasksClose}>Classic Dot Probe</MenuItem>
+								<MenuItem onClick={this.handleTasksClose}>ABV Feedback</MenuItem>
+								<MenuItem onClick={this.handleTasksClose}>Eye Tracking</MenuItem>
+							</Menu>
+							<Button aria-owns={this.state.anchorEl ? 'simple-menu' : null} aria-haspopup="true" onClick={this.handleTasksClick} color="inherit">Tasks</Button>
 							<Button  component={Link} to="/intake" color="inherit">Intake</Button>
 							<Button onClick={this._logout} color="inherit" >Logout [{this.props.user.email}]</Button>
 						</div>
